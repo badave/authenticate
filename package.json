@@ -1,0 +1,25 @@
+{
+  "name": "authenticate",
+  "main": "./lib/authenticate",
+  "version": "0.1.0",
+  "description": "Access token authentication middleware for Express, NodeJS",
+  "author": { 
+    "name": "David Badley", 
+    "email": "dave@airbritelabs.com", 
+    "url": "http://www.davidbadley.com/" 
+  },
+  "homepage": "http://airbriteinc.com/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/badave/authenticate.git"
+  },
+  "bugs": {
+    "url": "http://github.com/badave/authenticate/issues"
+  },
+  "dependencies": {
+    "express": ">=3.0.0",
+    "underscore": "*"
+  },
+  "engines": { "node": ">= 0.4.0" },
+  "keywords": ["express", "connect", "auth", "authn", "authentication", "middleware", "accesstoken"]
+}
