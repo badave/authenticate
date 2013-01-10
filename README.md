@@ -36,9 +36,22 @@ Add to `dependencies`:
 
 ## And then...
 
-All paths not contained in publicPaths will require an access token.  The access token can be passed to a frontend client after the client is authenticated via some form of login.  For example, making a POST to /login with email and password, verifying email and password are correct, and then passing the access token to the client.  Here is the JSON for an access token being passed to the client.
+All paths not contained in publicPaths will require an access token.  The access token can be passed to a frontend client after the client is authenticated via some form of login.  For example, making a POST to /login with email and password, verifying email and password are correct, and then passing the access token to the client.  Here is some javascript for passing an access token to the client in JSON.
+    app.get('/login', function(req, res) {
+        var authenticate = require("authenticate");
+        // Insert user auth logic here
+        res.writeHead(200, {
+            "Content-Type": "application/json"
+        });
+        res.write(JSON.stringify({
+            "access_token": authenticate.serializeToken(client_id, user_id, extra_data) // extra data is optional
+        }));
+        res.end();
+    })
 
-    var authenticate = require("authenticate");
-    {
-        "access_token": authenticate.serializeToken(client_id, user_id)
-    }
+An access token embeds data into the request.  
+    req.data.user_id // user id
+    req.data.client_id // A client id
+    req.data.date // date access token was created
+    req.data.extra_data // extra data passed in when serialized
+    req.data.access_token // Access token being passed in
