@@ -57,3 +57,7 @@ An access token embeds data into the request.
     req.data.date // date access token was created
     req.data.extra_data // extra data passed in when serialized
     req.data.access_token // Access token being passed in
+
+## Errors
+
+Authentication failures are passed to the client as 503 errors and the object { error: 'Unauthorized access' }
