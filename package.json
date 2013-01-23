@@ -1,7 +1,7 @@
 {
   "name": "authenticate",
   "main": "./lib/authenticate",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Access token authentication middleware for Express, NodeJS",
   "author": { 
     "name": "David Badley", 
