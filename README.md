@@ -20,23 +20,12 @@ Add to `dependencies`:
     // Inside of app.configure
     app.use(authenticate.middleware({
         encrypt_key: "", // Add any key for encrypting data
-        validate_key: "", // Add any key for signing data
-        // Paths that are required to be public by the API
-        publicPaths: {
-          "POST": {
-            loginPath: "/login",
-            registrationPath: "/register",
-            resetPasswordPath: "/resetpassword"
-          },
-          "PUT": {
-            changePasswordPath: "/changepassword"
-          }
-        }
+        validate_key: "" // Add any key for signing data
     }));
 
 ## And then...
 
-All paths not contained in publicPaths will require an access token.  The access token can be passed to a frontend client after the client is authenticated via some form of login.  For example, making a POST to /login with email and password, verifying email and password are correct, and then passing the access token to the client.  Here is some javascript for passing an access token to the client in JSON.
+The access token can be passed to a frontend client after the client is authenticated via some form of login.  For example, making a POST to /login with email and password, verifying email and password are correct, and then passing the access token to the client.  Here is some javascript for passing an access token to the client in JSON.
 
 	app.get('/login', function(req, res) {
 		var authenticate = require("authenticate");
@@ -50,14 +39,10 @@ All paths not contained in publicPaths will require an access token.  The access
 		res.end();
 	})
 
-An access token embeds data into the request.  
+An access token embeds data into the request.  You can then check whether the user and client have access to a resource or not.
 
     req.data.user_id // user id
     req.data.client_id // A client id
     req.data.date // date access token was created
     req.data.extra_data // extra data passed in when serialized
     req.data.access_token // Access token being passed in
-
-## Errors
-
-Authentication failures are passed to the client as 503 errors and the object { error: 'Unauthorized access' }
